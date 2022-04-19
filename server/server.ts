@@ -1,4 +1,4 @@
-const express = require('express');
+import express, {Express, Request, Response} from 'express';
 const path = require("path");
 const apiRouter = require('./routes/apiRouter');
 
@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/api', apiRouter);
 
-app.use('*', (req : Request, res : Response|any)  => {
+app.use('*', (req : Request, res : Response)  => {
   res.status(404).send('Not Found');
 });
 
