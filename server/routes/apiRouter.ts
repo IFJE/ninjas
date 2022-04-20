@@ -1,6 +1,7 @@
 import express = require('express');
 
 const { register, login, authenticate } = require('../controllers/authController');
+const userInfoController = require('../controllers/userInfoController');
 
 const router = express.Router();
 

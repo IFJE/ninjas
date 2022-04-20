@@ -1,6 +1,8 @@
-import express, {Express, Request, Response} from 'express';
-const path = require("path");
+import express = require('express');
+
+const path = require('path');
 const cookieParser = require('cookie-parser');
+
 const apiRouter = require('./routes/apiRouter');
 
 const app = express();
@@ -12,7 +14,7 @@ app.use(cookieParser());
 
 app.use('/api', apiRouter);
 
-app.use('*', (req : Request, res : Response) => {
+app.use('*', (req : express.Request, res : express.Response) => {
   res.status(404).send('Not Found');
 });
 
