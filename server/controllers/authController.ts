@@ -5,18 +5,6 @@ const db = require('../models/ninjaModels');
 
 const saltRounds : number = 10;
 
-type User = {
-  id: number,
-  username: string,
-  password: string,
-};
-
-type Session = {
-  id: number,
-  user_id: number,
-  ssid: string,
-};
-
 module.exports = {
   async register(req : express.Request, res : express.Response, next : express.NextFunction) {
     try {
@@ -24,22 +12,26 @@ module.exports = {
       await db.query('INSERT INTO users(username, password) values($1, $2);', [req.body.username, hash]);
       return next();
     } catch (e) {
-      return next(e);
+      return next({
+        status: 401,
+        log: 'registration failed',
+      });
     }
   },
   async login(req : express.Request, res : express.Response, next : express.NextFunction) {
     try {
-      const user : Awaited<Promise<User>> = await db.query('SELECT * FROM users WHERE username = $1;', [req.body.username]).rows[0];
+      const user : any = await db.query('SELECT * FROM users WHERE username = $1;', [req.body.username]).then((result : any) => result.rows[0]);
+      console.log(user);
       const loggedIn : Awaited<Promise<boolean>> = await bcrypt.compare(
         req.body.password,
-        user ? user.password : null,
+        user ? user.password : '',
       );
       if (loggedIn) {
         await db.query('DELETE FROM sessions WHERE user_id = $1;', [user.id]);
-        const session : Awaited<Promise<Session>> = await db.query('INSERT INTO sessions(user_id) VALUES($1) RETURNING *;', [user.id]).rows[0];
+        const session : any = await db.query('INSERT INTO sessions(user_id) VALUES($1) RETURNING *;', [user.id]).then((result : any) => result.rows[0]);
         res.cookie('ssid', session.ssid, { httpOnly: true });
-        res.locals.userId = session.user_id;
       }
+      res.locals.loggedIn = loggedIn;
       return next();
     } catch (e) {
       return next(e);
@@ -48,7 +40,7 @@ module.exports = {
   async authenticate(req : express.Request, res : express.Response, next : express.NextFunction) {
     try {
       if (Object.hasOwn(req.cookies, 'ssid')) {
-        const session : Awaited<Promise<Session>> = await db.query('SELECT * FROM sessions WHERE ssid = $1;', [req.cookies.ssid]).rows[0];
+        const session : any = await db.query('SELECT * FROM sessions WHERE ssid = $1;', [req.cookies.ssid]).then((result : any) => result.rows[0]);
         if (session) {
           res.locals.userId = session.user_id;
         }
