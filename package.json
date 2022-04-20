@@ -60,6 +60,7 @@
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.0",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "style-loader": "^3.3.1"
   }
 }

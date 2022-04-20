@@ -8,7 +8,7 @@ function Inputs() {
   return (
     <div id="input">
       <div>
-        <h1>NJAS</h1>
+        <h1>NINJAS</h1>
       </div>
       <span>
         <input type="text" />
