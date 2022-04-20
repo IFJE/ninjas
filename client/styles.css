@@ -1,0 +1,101 @@
+
+body{
+ display: flex;
+ justify-content: center;
+ background-color:rgb(119, 117, 117);
+
+ width: 100vw;
+ height: 100vh;
+}
+
+#root{
+ display: flex;
+ justify-content: center;
+ width: 100vw;
+ height: 100vh;
+}
+
+
+#account{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px;
+  width: 80vmax;
+  height: 45vmax;
+
+}
+
+#input {
+ display: flex;
+ gap: 20vw;
+ justify-content: space-around;
+ align-content: center;
+ height: 10%;
+}
+
+#main-container{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ height: 90%;
+ width: 100%;
+ 
+}
+
+#card-container{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ box-shadow: 3px 3px 5px 5px;
+ flex-wrap: wrap;
+ height: 90%;
+ width: 90%;
+ overflow: auto;
+}
+
+#inner-card-container{
+ display: flex;
+ gap: 20px;
+ flex-wrap: wrap;
+ height: 95%;
+ width: 95%;
+}
+
+.card{
+ box-shadow: 3px 3px 3px 3px;
+ width: 15vw;
+ height: 20vh;
+}
+
+button{
+ font-size: x-large;
+ background-color: black;
+ color: lightgray;
+ border-radius: 10px;
+}
+
+#not-applied{
+  background-color: rgb(128, 128, 128);
+}
+
+#applied{
+  background-color: blue;
+}
+
+#interviewing{
+  background-color: orange;
+}
+
+#offers{
+  background-color: green;
+}
+
+#rejected{
+  background-color: red;
+}
