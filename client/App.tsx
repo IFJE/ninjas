@@ -1,10 +1,10 @@
 import React from 'react';
+import Account from './Account';
 
 function App() {
   return (
-
-    <div>
-      <p>Inside the app </p>
+    <div id="app">
+      <Account />
     </div>
   );
 }
