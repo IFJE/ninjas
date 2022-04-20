@@ -1,16 +1,12 @@
 import React from 'react';
 import Account from './Account';
-import Form from './Form';
 
-function App(){
-
-  
-
+function App() {
   return (
     <div id="app">
-      <Account/>
+      <Account />
     </div>
-  )
+  );
 }
 
 export default App;
