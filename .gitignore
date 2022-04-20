@@ -6,6 +6,15 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# environment variables
+.env
+
+# client folder so I don't overrite the front-end
+client
+
+# original eslint airbnb typescript config
+.old_eslintrc.js
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
